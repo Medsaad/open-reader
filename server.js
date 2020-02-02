@@ -7,7 +7,8 @@ const port = process.env.PORT || 3000
 const mongoose = require('mongoose')
 
 // eslint-disable-next-line no-unused-vars
-const Task = require('./api/models/todoListModel')
+const Book = require('./api/models/bookModel')
+const Author = require('./api/models/authorModel')
 // created model loading here
 
 const bodyParser = require('body-parser')
@@ -24,11 +25,13 @@ mongoose.connect('mongodb://root:root@mongo:27017/TodoDB?authSource=admin&w=1', 
     app.use(bodyParser.json())
 
     app.get('/', (req, res) => {
-        res.send("Hello");
+        res.send("API Home");
     });
 
-    const routes = require('./api/routes/todoListRoutes') // importing route
-    routes(app) // register the route
+    const bookRoutes = require('./api/routes/bookRoutes') // importing route
+    const authorRoutes = require('./api/routes/authorRoutes') // importing route
+    bookRoutes(app) // register the route
+    authorRoutes(app) // register the route
 
     app.listen(port, () => {
         console.log('Node.js + MongoDB RESTful API server started on: ' + port)
