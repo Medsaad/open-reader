@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 
-const SECRET = "NEVER EVER MAKE THIS PUBLIC IN PRODUCTION!";
 
 const User = mongoose.model('Users')
 
@@ -49,7 +48,7 @@ exports.login = (req, res) => {
         // let's create a token using the sign() method
         const token = jwt.sign(
             { email: user.email },
-            SECRET,
+            process.env.SECRET,
             {
             expiresIn: 60 * 60 // expire in one hour
             }
