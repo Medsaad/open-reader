@@ -8,6 +8,9 @@ module.exports = function (app) {
     .get(book.index)
     .post(book.new)
 
+  app.route('/books/find')
+    .get(book.search)
+
   app.route('/books/:bookId')
     .get(book.show)
     .put(book.update)

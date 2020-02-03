@@ -9,6 +9,7 @@ const mongoose = require('mongoose')
 // eslint-disable-next-line no-unused-vars
 const Book = require('./api/models/bookModel')
 const Author = require('./api/models/authorModel')
+const User = require('./api/models/userModel')
 // created model loading here
 
 const bodyParser = require('body-parser')
@@ -30,8 +31,10 @@ mongoose.connect('mongodb://root:root@mongo:27017/TodoDB?authSource=admin&w=1', 
 
     const bookRoutes = require('./api/routes/bookRoutes') // importing route
     const authorRoutes = require('./api/routes/authorRoutes') // importing route
+    const userRoutes = require('./api/routes/userRoutes') // importing route
     bookRoutes(app) // register the route
     authorRoutes(app) // register the route
+    userRoutes(app)
 
     app.listen(port, () => {
         console.log('Node.js + MongoDB RESTful API server started on: ' + port)

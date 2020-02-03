@@ -26,6 +26,15 @@ exports.show = (req, res) => {
     })
 }
 
+exports.search = (req, res) => {
+    Book.find({
+        title: {$regex: req.query.s, $options: 'i'}
+      }, function (err, books) {
+        if (err) { res.send(err) }
+        res.json(books)
+    })
+}
+
 exports.update = (req, res) => {
     Book.findOneAndUpdate({ _id: req.params.bookId }, req.body, { new: true }, function (err, book) {
         if (err) { res.send(err) }

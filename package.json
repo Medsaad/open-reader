@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-mongodb-api-boilerplate",
+  "name": "open-reader",
   "version": "1.0.0",
-  "description": "A boilerplate for Node.js RESTful API with MongoDB",
+  "description": "An open source book note taking platform.",
   "scripts": {
     "start": "nodemon server.js",
     "lint": "standard"
@@ -10,14 +10,13 @@
     "RESTful",
     "Node.js",
     "MongoDB",
-    "Mongoose",
-    "Boilerplate"
+    "Mongoose"
   ],
   "author": "Chris Lee",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chrisleekr/nodejs-mongodb-api-boilerplate.git"
+    "url": "https://github.com/chrisleekr/open-reader.git"
   },
   "devDependencies": {
     "eslint": "^5.8.0",
@@ -31,6 +30,8 @@
   },
   "dependencies": {
     "express": "^4.16.4",
-    "mongoose": "^5.3.9"
+    "mongoose": "^5.3.9",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1"
   }
 }
