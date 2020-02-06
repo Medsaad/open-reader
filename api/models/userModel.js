@@ -13,8 +13,7 @@ const userSchema = new Schema({
   password: {
       type: String,
       required: 'Please enter your password',
-      minlength: 8,
-      match: [/[A-Za-z\d@$!%*#?&]$/, 'Password must contains numbers, letters and special characters']
+      match: [/^\$2[ayb]\$.{56}$/, 'Password must contains numbers, letters and special characters']
   },
   name: {
     type: String,
