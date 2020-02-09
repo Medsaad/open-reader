@@ -20,10 +20,13 @@ exports.new = (req, res) => {
 }
 
 exports.show = (req, res) => {
-    Book.findById(req.params.bookId, function (err, book) {
-        if (err) { res.send(err) }
+    Book.findById(req.params.bookId).populate('authors').exec()
+    .then((book) => {
         res.json(book)
     })
+    .catch(err => {
+        if (err) { res.send(err) }
+    });
 }
 
 exports.search = (req, res) => {

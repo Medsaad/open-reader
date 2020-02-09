@@ -4,7 +4,8 @@
   "description": "An open source book note taking platform.",
   "scripts": {
     "start": "nodemon server.js",
-    "lint": "standard"
+    "lint": "standard",
+    "test": "jest"
   },
   "keywords": [
     "RESTful",
