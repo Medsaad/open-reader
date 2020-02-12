@@ -3,7 +3,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
-
+const { validationResult } = require('express-validator');
 
 const User = mongoose.model('Users')
 
@@ -15,14 +15,12 @@ exports.list = async (req, res) => {
 }
 
 exports.signup = async (req, res) => {
-    /* const user = new User(req.body);
-    user.save((err, user) => {
-        if (err) { res.send(err) }
-        return res.json(user);
-    }); */
-    if (!req.body.password || !req.body.email)
-        return res.json({ error: 'Username or password is not passed correctly.' });
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+        return res.status(400).json({ errors: errors.array() });
+
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
     let userObj = {
         email: req.body.email,
         password: hashedPassword,
@@ -54,7 +52,7 @@ exports.login = (req, res) => {
 
         // let's create a token using the sign() method
         const token = jwt.sign(
-            { email: user.email },
+            { id: user._id },
             process.env.SECRET,
             {
                 expiresIn: 60 * 60 // expire in one hour

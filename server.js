@@ -1,3 +1,4 @@
+'use strict';
 const express = require('express')
 require('dotenv').config()
 
@@ -11,33 +12,42 @@ const mongoose = require('mongoose')
 const Book = require('./api/models/bookModel')
 const Author = require('./api/models/authorModel')
 const User = require('./api/models/userModel')
+const Read = require('./api/models/readModel')
+const Note = require('./api/models/notesModel')
 // created model loading here
 
 const bodyParser = require('body-parser')
 
 // mongoose instance connection url connection
-mongoose.Promise = global.Promise
-mongoose.connect('mongodb://root:root@mongo:27017/TodoDB?authSource=admin&w=1', { auth: { authdb: 'admin' }, useNewUrlParser: true })
-    .catch((err) => {
-        console.log("Unable to connect", err);
-    });
+try{
+    mongoose.Promise = global.Promise
+    mongoose.connect('mongodb://root:root@mongo:27017/TodoDB?authSource=admin&w=1', { auth: { authdb: 'admin' }, useNewUrlParser: true, useCreateIndex: true })
+        .catch((err) => {
+            console.log("Unable to connect", err);
+        });
+}catch(err){
+    console.log('Unable to connect to database.')
+}
 
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
-    app.use(bodyParser.urlencoded({ extended: true }))
-    app.use(bodyParser.json())
+app.get('/', (req, res) => {
+    res.send("API Home");
+});
 
-    app.get('/', (req, res) => {
-        res.send("API Home");
-    });
+const bookRoutes = require('./api/routes/bookRoutes') // importing route
+const authorRoutes = require('./api/routes/authorRoutes') // importing route
+const userRoutes = require('./api/routes/userRoutes') // importing route
+const noteRoutes = require('./api/routes/noteRoutes') // importing route
+const readRoutes = require('./api/routes/readRoutes') // importing route
 
-    const bookRoutes = require('./api/routes/bookRoutes') // importing route
-    const authorRoutes = require('./api/routes/authorRoutes') // importing route
-    const userRoutes = require('./api/routes/userRoutes') // importing route
-    bookRoutes(app) // register the route
-    authorRoutes(app) // register the route
-    userRoutes(app)
-
-    app.listen(port, () => {
-        console.log('Node.js + MongoDB RESTful API server started on: ' + port)
-    });
+app.use('/users', userRoutes);
+app.use('/books', bookRoutes);
+app.use('/author', authorRoutes);
+app.use('/notes', noteRoutes);
+app.use('/reads', readRoutes);
+app.listen(port, () => {
+    console.log('Node.js + MongoDB RESTful API server started on: ' + port)
+});
 

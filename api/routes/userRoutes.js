@@ -1,16 +1,15 @@
 'use strict'
+const { check } = require('express-validator');
+const user = require('../controllers/userController')
+let router = require('express').Router();
 
-module.exports = function (app) {
-  const user = require('../controllers/userController')
+//!temp rout
+router.get('/', user.list);
 
-  //!temp rout
-  app.route('/users')
-  .get(user.list)
 
-  // todoList Routes
-  app.route('/signup')
-    .post(user.signup)
+// todoList Routes
+router.post('/signup', [check('email', 'Invalid email').isEmail(), check('password').isLength({min: 8})], user.signup);
+router.post('/login', [check('email', 'Invalid email').isEmail()], user.login);
 
-  app.route('/login')
-    .post(user.login)
-}
+module.exports = router;
+

@@ -1,18 +1,17 @@
 'use strict'
+const router = require('express').Router();
 
-module.exports = function (app) {
-  const book = require('../controllers/bookController')
+const book = require('../controllers/bookController')
 
   // todoList Routes
-  app.route('/books')
-    .get(book.index)
-    .post(book.new)
+router.get('/', book.index);
+router.post('/', book.new);
 
-  app.route('/books/find')
-    .get(book.search)
+router.post('/find', book.search);
 
-  app.route('/books/:bookId')
-    .get(book.show)
-    .put(book.update)
-    .delete(book.delete)
-}
+router.get('/books/:bookId', book.show);
+router.put('/books/:bookId', book.update);
+router.delete('/books/:bookId', book.delete);
+ 
+
+module.exports = router;
