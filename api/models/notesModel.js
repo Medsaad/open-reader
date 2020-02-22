@@ -6,11 +6,9 @@ const noteSchema = new Schema({
   note: {
     type: String,
     required: 'Kindly enter the note',
-    required: true,
     minlength: 3
   },
-  read: { type: Schema.Types.ObjectId, ref: 'Reads' },
-  user: { type: Schema.Types.ObjectId, ref: 'Users' },
+  read: { type: Schema.Types.ObjectId, ref: 'Reads', required: true },
   created_date: {
     type: Date,
     default: Date.now

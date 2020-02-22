@@ -8,7 +8,7 @@ exports.index = (req, res) => {
     Book.find({}, function (err, book) {
         if (err) { res.send(err) }
         res.json(book)
-    })
+    });
 }
 
 exports.new = (req, res) => {
@@ -16,7 +16,7 @@ exports.new = (req, res) => {
     newBook.save(function (err, book) {
         if (err) { res.send(err) }
         res.json(book)
-    })
+    });
 }
 
 exports.show = (req, res) => {
@@ -35,14 +35,14 @@ exports.search = (req, res) => {
       }, function (err, books) {
         if (err) { res.send(err) }
         res.json(books)
-    })
+    });
 }
 
 exports.update = (req, res) => {
     Book.findOneAndUpdate({ _id: req.params.bookId }, req.body, { new: true }, function (err, book) {
         if (err) { res.send(err) }
         res.json(book)
-    })
+    });
 }
 
 exports.delete = (req, res) => {
@@ -51,5 +51,5 @@ exports.delete = (req, res) => {
     }, function (err, book) {
         if (err) { res.send(err) }
         res.json({ message: 'Book successfully deleted' })
-    })
+    });
 }

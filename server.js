@@ -36,17 +36,11 @@ app.get('/', (req, res) => {
     res.send("API Home");
 });
 
-const bookRoutes = require('./api/routes/bookRoutes') // importing route
-const authorRoutes = require('./api/routes/authorRoutes') // importing route
-const userRoutes = require('./api/routes/userRoutes') // importing route
-const noteRoutes = require('./api/routes/noteRoutes') // importing route
-const readRoutes = require('./api/routes/readRoutes') // importing route
-
-app.use('/users', userRoutes);
-app.use('/books', bookRoutes);
-app.use('/author', authorRoutes);
-app.use('/notes', noteRoutes);
-app.use('/reads', readRoutes);
+app.use('/users', require('./api/routes/userRoutes'));
+app.use('/books', require('./api/routes/bookRoutes'));
+app.use('/authors', require('./api/routes/authorRoutes'));
+app.use('/sessions', require('./api/routes/noteRoutes'));
+app.use('/reads', require('./api/routes/readRoutes'));
 app.listen(port, () => {
     console.log('Node.js + MongoDB RESTful API server started on: ' + port)
 });

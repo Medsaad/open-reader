@@ -9,9 +9,9 @@ router.post('/', book.new);
 
 router.post('/find', book.search);
 
-router.get('/books/:bookId', book.show);
-router.put('/books/:bookId', book.update);
-router.delete('/books/:bookId', book.delete);
+router.get('/:bookId', book.show);
+router.put('/:bookId', book.update);
+router.delete('/:bookId', book.delete);
  
 
 module.exports = router;

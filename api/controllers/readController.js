@@ -65,7 +65,7 @@ exports.list = async (req, res) => {
     }
 
     try{
-        const reads = await Read.find(filters);
+        const reads = await Read.find(filters).populate('book').exec();
         return res.json(reads);
     }catch(err){
         console.log(err);
