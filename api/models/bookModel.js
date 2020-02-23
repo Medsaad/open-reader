@@ -11,7 +11,11 @@ const BookSchema = new Schema({
   numberOfPages: {
     type: Number
   },
-  authors: [{ type: Schema.Types.ObjectId, ref: 'Authors' }],
+  author:  {
+    type: String,
+    required: 'Kindly enter the book author',
+    minlength: 3
+  }, //[{ type: Schema.Types.ObjectId, ref: 'Authors' }],
   created_date: {
     type: Date,
     default: Date.now

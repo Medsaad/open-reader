@@ -1,6 +1,8 @@
 'use strict'
 
 const mongoose = require('mongoose');
+const { validationResult } = require('express-validator');
+
 const Note = mongoose.model('Notes');
 const Read  = mongoose.model('Reads');
 
@@ -25,6 +27,11 @@ exports.all = async (req, res) => {
 }
 
 exports.new = async (req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     try{
         const { readId }  = req.params;
         const read = await Read.find({ _id: readId });
@@ -85,6 +92,11 @@ exports.show = async (req, res) => {
 }
 
 exports.update = async (req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     try{
         const note = await Note.findOneAndUpdate({ _id: req.params.noteId }, { note: req.body.note },  { new: true });
 

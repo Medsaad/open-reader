@@ -1,5 +1,6 @@
 'use strict';
-const express = require('express')
+const express = require('express');
+const cors = require('cors');
 require('dotenv').config()
 
 const app = express()
@@ -29,8 +30,14 @@ try{
     console.log('Unable to connect to database.')
 }
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+const corsOptions = {
+    origin: 'http://localhost:3001',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors(corsOptions));
 
 app.get('/', (req, res) => {
     res.send("API Home");
