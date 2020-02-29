@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import List from './partials/List';
 
 export default class Reads extends Component {
     constructor(props) {
@@ -46,9 +48,11 @@ export default class Reads extends Component {
                 <h3>Current Reads</h3>
                 <ul className="list">
                     {this.state.reads.map(read => (
-                        <li className="minus" key={read._id}>
-                            {read.book.title} <button className="delete-btn">Finish</button>
-                        </li>
+                        <List item={read}>
+                            {read.book.title} 
+                            <button className="delete-btn">Finish</button>
+                            <Link className="notes-btn" to={'notes/' + read._id}>Notes</Link>
+                        </List>
                     ))}
                     
                 </ul>

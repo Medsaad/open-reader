@@ -40,6 +40,10 @@ h4 {
   text-transform: uppercase;
 }
 
+a {
+  text-decoration: none;
+}
+
 .inc-exp-container {
   background-color: #fff;
   box-shadow: var(--box-shadow);
@@ -139,15 +143,24 @@ input[type='number'] {
   font-size: 20px;
   line-height: 20px;
   padding: 2px 5px;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translate(-100%, -50%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-.list li:hover .delete-btn {
+.notes-btn {
+  cursor: pointer;
+  background-color: #9c88ff;
+  border: 0;
+  color: #fff;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 2px 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.list li:hover .delete-btn, 
+  .list li:hover .notes-btn {
   opacity: 1;
 }
 
@@ -195,4 +208,11 @@ select {
   width: 45%;
   display: inline-block;
   margin-left: 15px;
+}
+
+textarea{
+  width: 100%;
+  resize: none;
+  height: 92px;
+  font-size: 16px;
 }

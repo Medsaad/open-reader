@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import List from './partials/List';
 
 export default class Books extends Component {
     constructor(props) {
@@ -62,9 +63,9 @@ export default class Books extends Component {
                 <h3>My Books</h3>
                 <ul className="list">
                     {this.state.books.map(book => (
-                        <li className="minus" key={book._id}>
+                        <List item={book}>
                             {book.title}  <em>{book.author}</em>
-                        </li>
+                        </List>
                     ))}
                     
                 </ul>

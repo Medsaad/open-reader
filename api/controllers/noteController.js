@@ -9,7 +9,7 @@ const Read  = mongoose.model('Reads');
 exports.all = async (req, res) => {
     try{
         const { readId }  = req.params;
-        const read = await Read.find({ _id: readId });
+        const read = await Read.findOne({ _id: readId });
         if(!read){
             res.status(400).json({ error: "read does not exist" });
         }
@@ -34,7 +34,7 @@ exports.new = async (req, res) => {
 
     try{
         const { readId }  = req.params;
-        const read = await Read.find({ _id: readId });
+        const read = await Read.findOne({ _id: readId });
         if(!read){
             return res.status(400).json({ error: "read does not exist" });
         }
@@ -65,7 +65,7 @@ exports.new = async (req, res) => {
 
 exports.search = async (req, res) => {
     try{
-        const read = await Read.find({ _id: req.params.readId });
+        const read = await Read.findOne({ _id: req.params.readId });
         if(!read){
             res.status(400).json({ error: "read does not exist" });
         }
@@ -83,7 +83,7 @@ exports.search = async (req, res) => {
 
 exports.show = async (req, res) => {
     try{
-        const note = await Note.find({ _id: req.params.noteId }).populate('read').exec();
+        const note = await Note.findOne({ _id: req.params.noteId }).populate('read').exec();
 
         return res.status(200).json(note);
     }catch(error){
