@@ -25,7 +25,7 @@ export default class Notes extends Component {
             }).then(response => {
                 this.setState({ notes: response.data });
             }).catch(err => {
-                logoutIfUnauthorized(err);
+                logoutIfUnauthorized(err, this);
             });
     }
 
@@ -46,7 +46,7 @@ export default class Notes extends Component {
 
         }).catch(err => {
             if(err.response)
-                logoutIfUnauthorized(err);
+                logoutIfUnauthorized(err, this);
             else 
                 console.log(err);
         });
@@ -60,7 +60,7 @@ export default class Notes extends Component {
             this.setState({ notes });
         }).catch(err => {
             if(err.response)
-                logoutIfUnauthorized(err);
+                logoutIfUnauthorized(err, this);
             else 
                 console.log(err);
         });

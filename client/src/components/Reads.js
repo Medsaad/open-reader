@@ -28,7 +28,7 @@ export default class Reads extends Component {
         }).then(response => {
             console.log(response);
         }).catch(err => {
-            logoutIfUnauthorized(err);
+            logoutIfUnauthorized(err, this);
         });
     }
 
@@ -39,7 +39,7 @@ export default class Reads extends Component {
             }).then(response => {
                 this.setState({ reads: response.data });
             }).catch(err => {
-                logoutIfUnauthorized(err);
+                logoutIfUnauthorized(err, this);
             });
     }
 
@@ -57,7 +57,7 @@ export default class Reads extends Component {
                             {read.book.title}
                             <div>
                                 <button className="delete-btn"><FaRegCheckCircle /> Finish</button>
-                                <Link className="notes-btn" to={'notes/' + read._id}><FaBookmark /> Notes</Link>
+                                <Link className="notes-btn" to={`notes/${read._id}`}><FaBookmark /> Notes</Link>
                             </div>
                         </List>
                     ))}
