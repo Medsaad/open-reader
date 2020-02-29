@@ -9,19 +9,22 @@
 }
 
 body {
-  background-color: #f7f7f7;
-  display: flex;
+  background-color: #F8ECC2;
+  width: 50%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  margin: 0;
+  margin: 0 auto;
   font-family: 'Lato', sans-serif;
+}
+
+svg{
+  padding-top: 3px;
 }
 
 .container {
   margin: 30px auto;
-  width: 350px;
+  width: 100%;
 }
 
 h1 {
@@ -94,7 +97,7 @@ input[type='number'] {
 
 .btn {
   cursor: pointer;
-  background-color: #9c88ff;
+  background-color: #a0522d;
   box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
@@ -137,9 +140,9 @@ input[type='number'] {
 
 .delete-btn {
   cursor: pointer;
-  background-color: #e74c3c;
+  background-color: transparent;
   border: 0;
-  color: #fff;
+  color: #e74c3c;
   font-size: 20px;
   line-height: 20px;
   padding: 2px 5px;
@@ -149,9 +152,8 @@ input[type='number'] {
 
 .notes-btn {
   cursor: pointer;
-  background-color: #9c88ff;
   border: 0;
-  color: #fff;
+  color: #a0522d;
   font-size: 20px;
   line-height: 20px;
   padding: 2px 5px;
@@ -199,8 +201,9 @@ select {
 }
 
 .nav{
-  width: 67%;
+  width: 185px;
   margin: 0 auto;
+  padding: 0;
 }
 
 .userLogin,
