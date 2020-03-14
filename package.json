@@ -13,11 +13,11 @@
     "MongoDB",
     "Mongoose"
   ],
-  "author": "Chris Lee",
+  "author": "Ahmed S. Zaghloul",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chrisleekr/open-reader.git"
+    "url": "https://github.com/Medsaad/open-reader.git"
   },
   "jest": {
     "testEnvironment": "node"
